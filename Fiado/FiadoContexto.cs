@@ -11,11 +11,10 @@ using System.Threading.Tasks;
 
 namespace Fiado
 {
-    public class FiadoContexto : IdentityDbContext
+    public class FiadoContexto : DbContext
     {
-        public DbSet<Cliente> Clientes { get; set; }
-        public DbSet<Atendente> Atendentes { get; set; }
-        public DbSet<Nota> Notas { get; set; }
+        public DbSet<Cliente> Clientes { get; set; }        
+        //public DbSet<Nota> Notas { get; set; }
 
         public FiadoContexto(DbContextOptions options) : base(options)
         {
@@ -26,11 +25,7 @@ namespace Fiado
         {
             //The entity type 'IdentityUserLogin<string>' requires a primary 
             //key to be defined. So we do this at the base.
-            base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<Base>();
-            modelBuilder.Entity<Pessoa>();
-
+            base.OnModelCreating(modelBuilder);                        
         }
     }
 }

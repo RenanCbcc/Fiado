@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Fiado.Models.AtendenteModelos
+namespace Fiado.Models.ViewModels
 {
-    public enum Atendente
+    public class ClienteBuscaViewModel
     {
-        Renan, Ruan, Nonato, Katia, Dany
     }
 }

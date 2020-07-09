@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace Fiado.Models.ViewModels
 {
     public class ClienteEditarViewModel : ClienteNovoViewModel
-    {
+    {        
         public int Id { get; set; }
     }
 }

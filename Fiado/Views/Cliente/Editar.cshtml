@@ -1,7 +1,56 @@
-﻿
+﻿@model ClienteEditarViewModel
+
 @{
-    ViewData["Title"] = "Editar";
+    ViewBag.Title = "Editar Cliente";
 }
 
-<h1>Editar</h1>
+<div class="card">
+    <div class="card-header">
+        <div class="col-md-8">
+            <h4>Editar cliente</h4>
+        </div>
+    </div>
+    <div class="card-body">
+        <form enctype="multipart/form-data" asp-controller="Cliente" asp-action="Editar" method="post" class="mt-3">
+
+            <input hidden asp-for="Id" />
+
+            <div class="form-group row">
+                <label asp-for="Nome" class="col-sm-2 col-form-label">Nome</label>
+                <div class="col-sm-10">
+                    <input asp-for="Nome" class="form-control" placeholder="Nome">
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label asp-for="Telefone" class="col-sm-2 col-form-label">Telefone</label>
+                <div class="col-sm-10">
+                    <input asp-for="Telefone" class="form-control" placeholder="(00) 00000-0000">
+                    <span asp-validation-for="Telefone" class="text-danger"></span>
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label asp-for="Endereco" class="col-sm-2 col-form-label">Endereço</label>
+                <div class="col-sm-10">
+                    <input asp-for="Endereco" class="form-control" placeholder="Ex.: Rua dos Bobos Nº 0">
+                    <span asp-validation-for="Endereco" class="text-danger"></span>
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                    <a asp-controller="cliente" asp-action="lista" class="btn btn-secondary">Cancelar</a>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
 

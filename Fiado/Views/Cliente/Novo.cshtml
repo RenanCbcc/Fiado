@@ -11,7 +11,7 @@
         </div>
     </div>
     <div class="card-body">
-        <form enctype="multipart/form-data" asp-controller="member" asp-action="create" method="post" class="mt-3">
+        <form enctype="multipart/form-data" asp-controller="Cliente" asp-action="Novo" method="post" class="mt-3">
 
 
             <div class="form-group row">
@@ -32,7 +32,7 @@
 
 
             <div class="form-group row">
-                <label asp-for="Endereco" class="col-sm-2 col-form-label">Telefone</label>
+                <label asp-for="Endereco" class="col-sm-2 col-form-label">Endereço</label>
                 <div class="col-sm-10">
                     <input asp-for="Endereco" class="form-control" placeholder="Ex.: Rua dos Bobos Nº 0">
                     <span asp-validation-for="Endereco" class="text-danger"></span>
@@ -43,7 +43,7 @@
             <div class="form-group row">
                 <div class="col-sm-10">
                     <button type="submit" class="btn btn-primary">Salvar</button>
-                    <a asp-controller="cliente" asp-action="list" class="btn btn-secondary">Cancel</a>
+                    <a asp-controller="cliente" asp-action="lista" class="btn btn-secondary">Cancelar</a>
                 </div>
             </div>
 

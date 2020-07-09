@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 namespace Fiado.Models.ViewModels
 {
     public class ClienteNovoViewModel
-    {
+    {     
+
         [Required]
         [MaxLength(50, ErrorMessage = "Nome não pode exceder 50 caracteres.")]
         public string Nome { get; set; }
