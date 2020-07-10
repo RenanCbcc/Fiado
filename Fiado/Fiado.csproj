@@ -10,6 +10,16 @@
     <Compile Remove="Migrations\20200709183720_Cliente.Designer.cs" />
     <Compile Remove="Migrations\20200709183924_Cliente.cs" />
     <Compile Remove="Migrations\20200709183924_Cliente.Designer.cs" />
+    <Compile Remove="Migrations\20200710173259_Conta.cs" />
+    <Compile Remove="Migrations\20200710173259_Conta.Designer.cs" />
+    <Compile Remove="Migrations\20200710174349_Conta.cs" />
+    <Compile Remove="Migrations\20200710174349_Conta.Designer.cs" />
+    <Compile Remove="Migrations\20200710175444_Conta.cs" />
+    <Compile Remove="Migrations\20200710175444_Conta.Designer.cs" />
+    <Compile Remove="Migrations\20200710181414_Conta.cs" />
+    <Compile Remove="Migrations\20200710181414_Conta.Designer.cs" />
+    <Compile Remove="Migrations\20200710181524_Conta.cs" />
+    <Compile Remove="Migrations\20200710181524_Conta.Designer.cs" />
   </ItemGroup>
 
 

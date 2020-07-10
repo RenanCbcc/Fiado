@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Fiado.Models;
 using Fiado.Models.ClienteModelos;
+using Fiado.Models.ContaModelos;
 using Fiado.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -13,10 +14,12 @@ namespace Fiado.Controllers
     public class ClienteController : Controller
     {
         private readonly IClienteRepositorio clienteRepositorio;
+        private readonly IContaRepositorio contaRepositorio;
 
-        public ClienteController(IClienteRepositorio clienteRepositorio)
+        public ClienteController(IClienteRepositorio clienteRepositorio, IContaRepositorio contaRepositorio)
         {
             this.clienteRepositorio = clienteRepositorio;
+            this.contaRepositorio = contaRepositorio;
         }
 
         [AllowAnonymous]
@@ -44,8 +47,10 @@ namespace Fiado.Controllers
                     Telefone = modelo.Telefone,
                     Endereco = modelo.Endereco
                 };
+
                 await clienteRepositorio.Adicionar(cliente);
-                return RedirectToAction("Lista", "Cliente");
+                await contaRepositorio.Adicionar(new Conta() { Cliente = cliente, Status = Status.Ativada });
+                return RedirectToAction("Lista", "Conta");
             }
 
             return View();
