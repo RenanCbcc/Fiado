@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Fiado.Migrations
 {
     [DbContext(typeof(FiadoContexto))]
-    [Migration("20200710223508_Conta")]
+    [Migration("20200711214646_Conta")]
     partial class Conta
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -79,8 +79,6 @@ namespace Fiado.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ContaId");
-
                     b.ToTable("Notas");
                 });
 
@@ -89,14 +87,6 @@ namespace Fiado.Migrations
                     b.HasOne("Fiado.Models.ClienteModelos.Cliente", "Cliente")
                         .WithOne("Conta")
                         .HasForeignKey("Fiado.Models.ContaModelos.Conta", "ClienteId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Fiado.Models.NotaModelos.Nota", b =>
-                {
-                    b.HasOne("Fiado.Models.ContaModelos.Conta")
-                        .WithMany("Notas")
-                        .HasForeignKey("ContaId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

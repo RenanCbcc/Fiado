@@ -20,6 +20,8 @@
     <Compile Remove="Migrations\20200710181414_Conta.Designer.cs" />
     <Compile Remove="Migrations\20200710181524_Conta.cs" />
     <Compile Remove="Migrations\20200710181524_Conta.Designer.cs" />
+    <Compile Remove="Migrations\20200710223508_Conta.cs" />
+    <Compile Remove="Migrations\20200710223508_Conta.Designer.cs" />
   </ItemGroup>
 
 
@@ -28,11 +30,6 @@
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.4" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="2.2.4" />
-  </ItemGroup>
-
-
-  <ItemGroup>
-    <Folder Include="Views\Nota\" />
   </ItemGroup>
 
 </Project>

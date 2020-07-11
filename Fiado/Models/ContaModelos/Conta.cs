@@ -11,20 +11,15 @@ namespace Fiado.Models.ContaModelos
 {
     public class Conta : Base
     {
-        public Conta()
-        {
-            Notas = new HashSet<Nota>();
-        }
 
         [ForeignKey("Clientes")]
         public int ClienteId { get; set; }
         public Cliente Cliente { get; set; }
 
-
         [Required]
         public float Total { get; set; }
         [Required]
         public Status Status { get; set; }
-        public HashSet<Nota> Notas { get; set; }
+
     }
 }

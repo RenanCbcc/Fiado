@@ -44,12 +44,6 @@ namespace Fiado.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Notas", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Notas_Contas_ContaId",
-                        column: x => x.ContaId,
-                        principalTable: "Contas",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -57,20 +51,15 @@ namespace Fiado.Migrations
                 table: "Contas",
                 column: "ClienteId",
                 unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Notas_ContaId",
-                table: "Notas",
-                column: "ContaId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Notas");
+                name: "Contas");
 
             migrationBuilder.DropTable(
-                name: "Contas");
+                name: "Notas");
         }
     }
 }
