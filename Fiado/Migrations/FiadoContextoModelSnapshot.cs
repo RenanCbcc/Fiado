@@ -25,6 +25,8 @@ namespace Fiado.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("ContaId");
+
                     b.Property<string>("Endereco")
                         .IsRequired();
 
@@ -36,6 +38,9 @@ namespace Fiado.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ContaId")
+                        .IsUnique();
+
                     b.ToTable("Clientes");
                 });
 
@@ -45,16 +50,11 @@ namespace Fiado.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("ClienteId");
-
                     b.Property<int>("Status");
 
                     b.Property<float>("Total");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ClienteId")
-                        .IsUnique();
 
                     b.ToTable("Contas");
                 });
@@ -80,11 +80,11 @@ namespace Fiado.Migrations
                     b.ToTable("Notas");
                 });
 
-            modelBuilder.Entity("Fiado.Models.ContaModelos.Conta", b =>
+            modelBuilder.Entity("Fiado.Models.ClienteModelos.Cliente", b =>
                 {
-                    b.HasOne("Fiado.Models.ClienteModelos.Cliente", "Cliente")
-                        .WithOne("Conta")
-                        .HasForeignKey("Fiado.Models.ContaModelos.Conta", "ClienteId")
+                    b.HasOne("Fiado.Models.ContaModelos.Conta", "Conta")
+                        .WithOne("Cliente")
+                        .HasForeignKey("Fiado.Models.ClienteModelos.Cliente", "ContaId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

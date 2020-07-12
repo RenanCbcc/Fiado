@@ -45,11 +45,11 @@ namespace Fiado.Controllers
                 {
                     Nome = modelo.Nome,
                     Telefone = modelo.Telefone,
-                    Endereco = modelo.Endereco
+                    Endereco = modelo.Endereco,
+                    Conta = new Conta()
                 };
 
                 await clienteRepositorio.Adicionar(cliente);
-                await contaRepositorio.Adicionar(new Conta() { Cliente = cliente, Status = Status.Ativada });
                 return RedirectToAction("Lista", "Conta");
             }
 

@@ -7,6 +7,6 @@ namespace Fiado.Models.ContaModelos
 {
     public enum Status
     {
-        Ativada, Desativada
+        Ativa, Inativa
     }
 }

@@ -8,25 +8,24 @@ namespace Fiado.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.AddColumn<int>(
+                name: "ContaId",
+                table: "Clientes",
+                nullable: false,
+                defaultValue: 0);
+
             migrationBuilder.CreateTable(
                 name: "Contas",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    ClienteId = table.Column<int>(nullable: false),
                     Total = table.Column<float>(nullable: false),
                     Status = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Contas", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Contas_Clientes_ClienteId",
-                        column: x => x.ClienteId,
-                        principalTable: "Clientes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -47,19 +46,39 @@ namespace Fiado.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Contas_ClienteId",
-                table: "Contas",
-                column: "ClienteId",
+                name: "IX_Clientes_ContaId",
+                table: "Clientes",
+                column: "ContaId",
                 unique: true);
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Clientes_Contas_ContaId",
+                table: "Clientes",
+                column: "ContaId",
+                principalTable: "Contas",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Cascade);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropForeignKey(
+                name: "FK_Clientes_Contas_ContaId",
+                table: "Clientes");
+
             migrationBuilder.DropTable(
                 name: "Contas");
 
             migrationBuilder.DropTable(
                 name: "Notas");
+
+            migrationBuilder.DropIndex(
+                name: "IX_Clientes_ContaId",
+                table: "Clientes");
+
+            migrationBuilder.DropColumn(
+                name: "ContaId",
+                table: "Clientes");
         }
     }
 }

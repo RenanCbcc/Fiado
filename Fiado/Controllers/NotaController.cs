@@ -33,13 +33,13 @@ namespace Fiado.Controllers
         [HttpGet]
         public IActionResult Nova(int Id)
         {
-            var modelo = new NotaVovaViewModel();
+            var modelo = new NotaNovaViewModel();
             modelo.ContaId = Id;
             return View(modelo);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Nova(NotaVovaViewModel modelo)
+        public async Task<IActionResult> Nova(NotaNovaViewModel modelo)
         {
             if (ModelState.IsValid)
             {
@@ -58,6 +58,41 @@ namespace Fiado.Controllers
                 await contaRepositorio.Atualizar(conta);
 
                 return RedirectToAction("Lista", "Conta");
+            }
+            return View();
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> Editar(int Id)
+        {
+            var nota = await notaRepositorio.GetNota(Id);
+            var modelo = new NotaEditarViewModel()
+            {
+                ContaId = nota.ContaId,
+                Data = nota.Data,
+                Atendente = nota.Atendente,
+                Valor = nota.Valor,
+                Detalhes = nota.Detalhes
+            };
+            return View(modelo);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Editar(NotaEditarViewModel modelo)
+        {
+            if (ModelState.IsValid)
+            {
+                var nota = await notaRepositorio.GetNota(modelo.Id);                
+                var conta = await contaRepositorio.GetConta(modelo.ContaId);
+                conta.Total -= nota.Valor;
+                conta.Total += modelo.Valor;
+                nota.Detalhes = modelo.Detalhes;
+                nota.Valor = modelo.Valor;
+
+                await notaRepositorio.Atualizar(nota);
+                await contaRepositorio.Atualizar(conta);
+                return RedirectToAction("Detalhes", "Conta", new { id = conta.Id });
             }
             return View();
         }

@@ -22,6 +22,32 @@
     <Compile Remove="Migrations\20200710181524_Conta.Designer.cs" />
     <Compile Remove="Migrations\20200710223508_Conta.cs" />
     <Compile Remove="Migrations\20200710223508_Conta.Designer.cs" />
+    <Compile Remove="Migrations\20200711214646_Conta.cs" />
+    <Compile Remove="Migrations\20200711214646_Conta.Designer.cs" />
+    <Compile Remove="Migrations\20200712202430_Conta.cs" />
+    <Compile Remove="Migrations\20200712202430_Conta.Designer.cs" />
+    <Compile Remove="Migrations\20200712202812_Conta.cs" />
+    <Compile Remove="Migrations\20200712202812_Conta.Designer.cs" />
+    <Compile Remove="Migrations\20200712202935_Conta.cs" />
+    <Compile Remove="Migrations\20200712202935_Conta.Designer.cs" />
+    <Compile Remove="Migrations\20200712203342_Conta.cs" />
+    <Compile Remove="Migrations\20200712203342_Conta.Designer.cs" />
+    <Compile Remove="Migrations\20200712203724_Conta.cs" />
+    <Compile Remove="Migrations\20200712203724_Conta.Designer.cs" />
+    <Compile Remove="Migrations\20200712203919_Conta.cs" />
+    <Compile Remove="Migrations\20200712203919_Conta.Designer.cs" />
+    <Compile Remove="Migrations\20200712204326_Conta.cs" />
+    <Compile Remove="Migrations\20200712204326_Conta.Designer.cs" />
+    <Compile Remove="Migrations\20200712204450_Conta.cs" />
+    <Compile Remove="Migrations\20200712204450_Conta.Designer.cs" />
+    <Compile Remove="Migrations\20200712205838_Conta.cs" />
+    <Compile Remove="Migrations\20200712205838_Conta.Designer.cs" />
+    <Compile Remove="Migrations\20200712210239_Conta.cs" />
+    <Compile Remove="Migrations\20200712210239_Conta.Designer.cs" />
+    <Compile Remove="Migrations\20200712210708_Conta.cs" />
+    <Compile Remove="Migrations\20200712210708_Conta.Designer.cs" />
+    <Compile Remove="Migrations\20200712211330_Conta.cs" />
+    <Compile Remove="Migrations\20200712211330_Conta.Designer.cs" />
   </ItemGroup>
 
 

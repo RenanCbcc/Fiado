@@ -9,7 +9,9 @@ namespace Fiado.Models.NotaModelos
 {
     public interface INotaRepositorio
     {
-        Task<Nota> GetNoTa(int Id);
+        Task<Nota> GetNota(int Id);
+
+        Task<List<Nota>> GetNotas(int Id);
         IQueryable<Nota> Notas(int Id);
         Task Atualizar(Nota nota);
         Task Adicionar(Nota nota);
@@ -37,9 +39,14 @@ namespace Fiado.Models.NotaModelos
             await contexto.SaveChangesAsync();
         }
 
-        public async Task<Nota> GetNoTa(int Id)
+        public async Task<Nota> GetNota(int Id)
         {
             return await contexto.Notas.FindAsync(Id);
+        }
+
+        public async Task<List<Nota>> GetNotas(int Id)
+        {
+            return await contexto.Notas.Where(n => n.ContaId == Id).ToListAsync();
         }
 
         public IQueryable<Nota> Notas(int Id)
