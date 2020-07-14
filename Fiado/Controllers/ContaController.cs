@@ -74,6 +74,7 @@ namespace Fiado.Controllers
             return View(modelo);
         }
 
+        
         public IActionResult Buscar()
         {
             return View();

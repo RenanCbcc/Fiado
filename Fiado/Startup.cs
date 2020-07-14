@@ -6,6 +6,7 @@ using Fiado.Models.AtendenteModelos;
 using Fiado.Models.ClienteModelos;
 using Fiado.Models.ContaModelos;
 using Fiado.Models.NotaModelos;
+using Fiado.Models.PagamentoModelos;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -41,7 +42,7 @@ namespace Fiado
                 if (env.IsProduction())
                 {
                     //
-                    
+
                     options.UseNpgsql(configuration.GetConnectionString("PostgresConnection"));
                 }
 
@@ -53,6 +54,8 @@ namespace Fiado
             services.AddScoped<IClienteRepositorio, ClienteRepositorio>();
             services.AddScoped<INotaRepositorio, NotaRepositorio>();
             services.AddScoped<IContaRepositorio, ContaRepositorio>();
+            services.AddScoped<IPagamentoRepositorio, PagamentoRepositorio>();
+
 
         }
 

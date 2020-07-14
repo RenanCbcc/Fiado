@@ -1,0 +1,52 @@
+﻿@model  DebitoViewModel
+
+@{
+    ViewBag.Title = Model.Titulo;
+}
+
+<div class="card">
+    <div class="card-header">
+        <div class="col-md-8">
+            <h4>@Model.Titulo</h4>
+        </div>
+    </div>
+    <div class="card-body">
+        <form enctype="multipart/form-data" asp-controller="Pagamento" asp-action="Debitar" method="post" class="mt-3">
+            <div id="errors" asp-validation-summary="All" class="text-danger"></div>
+            
+            <input hidden asp-for="ContaId"/>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label asp-for="Total" class="col-form-label">Total da conta.</label>
+                    <input asp-for="Total" class="form-control" disabled>
+                    <span asp-validation-for="Total" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label asp-for="Atendente" class="col-form-label">Atendente</label>
+                    <select asp-for="Atendente" class="custom-select mr-sm-2" asp-items="Html.GetEnumSelectList<Atendente>()">
+                        <option value="">Please Select</option>
+                    </select>
+                    <span asp-validation-for="Atendente" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label asp-for="Valor" class="col-form-label">Valor.</label>
+                    <input asp-for="Valor" class="form-control" placeholder="R$ 0.00">
+                    <span asp-validation-for="Valor" class="text-danger"></span>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                    <a asp-controller="Conta" asp-action="lista" class="btn btn-secondary">Cancelar</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+

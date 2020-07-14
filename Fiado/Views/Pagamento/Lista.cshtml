@@ -1,0 +1,65 @@
+﻿@model ListaPaginada<Pagamento>
+
+@{
+    ViewBag.Title = "Pagamento";
+    var prevDisabled = Model.ProximaPagina ? "" : "disabled";
+    var nextDisabled = Model.PaginaAnterior ? "" : "disabled";
+}
+
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-8">
+                <h4>Clientes</h4>
+            </div>
+            <div class="btn-group col-md-4 text-right">
+                <a asp-controller="Pagamento" asp-action="buscar" class="btn btn-secondary">
+                    <span>Buscar</span>
+                </a>
+            </div>
+
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Atendente</th>
+                    <th>Valor</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var pagamento in Model)
+                {
+                    <tr>
+                        <td>@pagamento.Data</td>
+                        <td>@pagamento.Atendente</td>
+                        <td>@pagamento.Valor</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer p-0">
+        <nav aria-label="...">
+            <ul class="pagination justify-content-end mt-3 mr-3">
+
+                <li class="page-item @prevDisabled">
+                    <a class="page-link " asp-action="Lista" asp-controller="Pagamento"
+                       asp-route-pageNumber="@(Model.PaginaIndice - 1)">
+                        Anterior
+                    </a>
+                </li>
+
+                <li class="page-item @nextDisabled">
+                    <a class="page-link" asp-action="Lista" asp-controller="Pagamento"
+                       asp-route-pageNumber="@(Model.PaginaIndice + 1)">
+                        Próximo
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>

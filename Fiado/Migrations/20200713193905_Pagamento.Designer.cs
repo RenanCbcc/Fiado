@@ -4,14 +4,16 @@ using Fiado;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Fiado.Migrations
 {
     [DbContext(typeof(FiadoContexto))]
-    partial class FiadoContextoModelSnapshot : ModelSnapshot
+    [Migration("20200713193905_Pagamento")]
+    partial class Pagamento
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
