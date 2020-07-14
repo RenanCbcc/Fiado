@@ -1,4 +1,5 @@
 ﻿using Fiado.Models.AtendenteModelos;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

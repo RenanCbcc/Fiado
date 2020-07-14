@@ -87,5 +87,22 @@ namespace Fiado.Controllers
             return View();
         }
 
+
+        [HttpGet]
+        public IActionResult Buscar()
+        {
+            return View("Busca");
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<ViewResult> Buscar(ClienteBuscaViewModel modelo)
+        {
+            var clientes = clienteRepositorio.Buscar(modelo);
+            var paginatedList = await ListaPaginada<Cliente>.CreateAsync(clientes, 1, 5);
+            return View("Lista", paginatedList);
+        }
+
+
     }
 }

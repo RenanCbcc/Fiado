@@ -13,7 +13,7 @@ namespace Fiado.Models.ClienteModelos
         IQueryable<Cliente> Clientes();
         Task Adicionar(Cliente cliente);
         Task Atualizar(Cliente cliente);
-        IQueryable<Cliente> Search(ClienteBuscaViewModel modelo);
+        IQueryable<Cliente> Buscar(ClienteBuscaViewModel modelo);
 
     }
 
@@ -49,10 +49,26 @@ namespace Fiado.Models.ClienteModelos
             return await contexto.Clientes.FindAsync(Id);
         }
 
-        public IQueryable<Cliente> Search(ClienteBuscaViewModel modelo)
+        public IQueryable<Cliente> Buscar(ClienteBuscaViewModel modelo)
         {
-            throw new NotImplementedException();
+            var query = "SELECT CL.ContaId,CL.Endereco,CL.Id,CL.Nome,CL.Telefone " +
+                "FROM dbo.Clientes CL JOIN dbo.Contas CO on CL.ContaId = CO.Id WHERE ";
+            if (modelo.Nome != null)
+            {
+                query += "Nome LIKE '%'+ @p0 +'%' AND ";
+            }
+            if (modelo.Endereco != null)
+            {
+                query += "Endereco LIKE '%'+ @p1 +'%' AND ";
+            }
+            if (modelo.Status != null)
+            {
+                query += "Status = @p2 AND ";
+            }
+
+            query += "1 = 1";
+            return contexto.Clientes.FromSql(query, modelo.Nome, modelo.Endereco, modelo.Status);
         }
-                
+
     }
 }

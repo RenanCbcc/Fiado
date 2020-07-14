@@ -1,7 +1,7 @@
 ﻿@model ListaPaginada<Pagamento>
 
 @{
-    ViewBag.Title = "Pagamento";
+    ViewBag.Title = "Pagamentos";
     var prevDisabled = Model.ProximaPagina ? "" : "disabled";
     var nextDisabled = Model.PaginaAnterior ? "" : "disabled";
 }
@@ -10,7 +10,7 @@
     <div class="card-header">
         <div class="row">
             <div class="col-md-8">
-                <h4>Clientes</h4>
+                <h4>Pagamentos</h4>
             </div>
             <div class="btn-group col-md-4 text-right">
                 <a asp-controller="Pagamento" asp-action="buscar" class="btn btn-secondary">

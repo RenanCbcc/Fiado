@@ -59,7 +59,7 @@ namespace Fiado.Controllers
 
                 return RedirectToAction("Lista", "Conta");
             }
-            return View();
+            return View(modelo);
         }
 
 

@@ -56,7 +56,7 @@ namespace Fiado.Controllers
                 {
                     ModelState.AddModelError(string.Empty, "O valor do pagamento não pode ser " +
                         "maior que o total a ser pago.");
-                    return View("Debito");
+                    return View("Debito", modelo);
                 }
 
                 conta.Total -= modelo.Valor;
@@ -75,7 +75,7 @@ namespace Fiado.Controllers
                 return RedirectToAction("Lista", "Pagamento");
             }
 
-            return View("Debito");
+            return View("Debito", modelo);
         }
     }
 }
