@@ -77,5 +77,23 @@ namespace Fiado.Controllers
 
             return View("Debito", modelo);
         }
+
+        [HttpGet]
+        public IActionResult Buscar()
+        {
+            var modelo = new PagamentoBuscaViewModel();
+            return View("Busca", modelo);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Buscar(PagamentoBuscaViewModel modelo)
+        {
+            var pagamentos = pagamentoRepositorio.Buscar(modelo);
+            var listaPaginada = await ListaPaginada<Pagamento>.CreateAsync(pagamentos, 1, 10);
+            return View("Lista", listaPaginada);
+
+        }
+
+
     }
 }

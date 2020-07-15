@@ -63,15 +63,15 @@ namespace Fiado.Models.NotaModelos
             }
             if (modelo.MenorQue != null)
             {
-                query += "Valor < @p1 AND ";
+                query += "Valor <= @p1 AND ";
             }
             if (modelo.MaiorQue != null)
             {
-                query += "Valor > @p2 AND ";
+                query += "Valor >= @p2 AND ";
             }
             if (modelo.Data != null)
             {
-                query += "[Data] = @p3 AND ";
+                query += "[Data] <= @p3 AND ";
             }
             query += "1 = 1";
             return contexto.Notas.FromSql(query, modelo.Atendente, modelo.MenorQue, modelo.MaiorQue, modelo.Data);

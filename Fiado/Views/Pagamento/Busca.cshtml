@@ -1,0 +1,73 @@
+﻿@model PagamentoBuscaViewModel
+
+@{
+    ViewBag.Title = Model.TituloPagina;
+}
+
+<div class="card">
+    <div class="card-header">
+        <div class="col-md-8">
+            <h4>@Model.TituloPagina</h4>
+        </div>
+    </div>
+    <div class="card-body">
+        <form enctype="multipart/form-data" asp-controller="Pagamento" asp-action="Buscar" method="post" class="mt-3">
+
+           
+
+            <div class="input-group  mb-3">
+                <label asp-for="Data" class="col-sm-2 col-form-label">Data</label>
+                <div class="col-sm-10">
+                    <input asp-for="Data" class="form-control">
+                </div>
+            </div>
+
+
+            <div class="input-group mb-3">
+                <label asp-for="MaiorQue" class="col-sm-2 col-form-label">Maior que</label>
+                <div class="input-group-prepend">
+                    <span class="input-group-text">$</span>
+                </div>
+                <input asp-for="MaiorQue" class="form-control">
+                <div class="input-group-append">
+                    <span class="input-group-text">.00</span>
+                </div>
+
+            </div>
+
+            <div class="input-group mb-3">
+                <label asp-for="MenorQue" class="col-sm-2 col-form-label">Menor que</label>
+                <div class="input-group-prepend">
+                    <span class="input-group-text">$</span>
+                </div>
+                <input asp-for="MenorQue" class="form-control">
+                <div class="input-group-append">
+                    <span class="input-group-text">.00</span>
+                </div>
+
+            </div>
+
+            <div class="input-group mb-3">
+                <label asp-for="Atendente" class="col-sm-2 col-form-label">Status</label>
+                <div class="col-sm-10">
+                    <select asp-for="Atendente" class="custom-select mr-sm-2" asp-items="Html.GetEnumSelectList<Atendente>()">
+                        <option value="">Please Select</option>
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary">Buscar</button>
+                    <a asp-controller="Pagamento" asp-action="Lista"
+                       class="btn btn-secondary">Cancelar</a>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+
