@@ -15,7 +15,7 @@ namespace Fiado.Models.NotaModelos
         IQueryable<Nota> Notas(int Id);
         Task Atualizar(Nota nota);
         Task Adicionar(Nota nota);
-        IQueryable<Nota> Search(NotaBuscaViewModel modelo);
+        IQueryable<Nota> Buscar(NotaBuscaViewModel modelo);
     }
     public class NotaRepositorio : INotaRepositorio
     {
@@ -54,9 +54,29 @@ namespace Fiado.Models.NotaModelos
             return contexto.Notas.Where(n => n.ContaId == Id);
         }
 
-        public IQueryable<Nota> Search(NotaBuscaViewModel modelo)
+        public IQueryable<Nota> Buscar(NotaBuscaViewModel modelo)
         {
-            throw new NotImplementedException();
+            var query = "SELECT * FROM Notas WHERE ";
+            if (modelo.Atendente != null)
+            {
+                query += "Atendente = @p0 AND ";
+            }
+            if (modelo.MenorQue != null)
+            {
+                query += "Valor < @p1 AND ";
+            }
+            if (modelo.MaiorQue != null)
+            {
+                query += "Valor > @p2 AND ";
+            }
+            if (modelo.Data != null)
+            {
+                query += "[Data] = @p3 AND ";
+            }
+            query += "1 = 1";
+            return contexto.Notas.FromSql(query, modelo.Atendente, modelo.MenorQue, modelo.MaiorQue, modelo.Data);
+
+
         }
     }
 }

@@ -23,9 +23,9 @@ namespace Fiado.Controllers
         }
 
         [AllowAnonymous]
-        public async Task<ViewResult> Lista(int Id, int paginaNumero = 1)
+        public async Task<ViewResult> Lista(int paginaNumero = 1)
         {
-            var listaPaginada = await ListaPaginada<Nota>.CreateAsync(notaRepositorio.Notas(Id), paginaNumero, 10);
+            var listaPaginada = await ListaPaginada<Nota>.CreateAsync(notaRepositorio.Notas(1), paginaNumero, 10);
             return View(listaPaginada);
         }
 
@@ -83,7 +83,7 @@ namespace Fiado.Controllers
         {
             if (ModelState.IsValid)
             {
-                var nota = await notaRepositorio.GetNota(modelo.Id);                
+                var nota = await notaRepositorio.GetNota(modelo.Id);
                 var conta = await contaRepositorio.GetConta(modelo.ContaId);
                 conta.Total -= nota.Valor;
                 conta.Total += modelo.Valor;
@@ -97,9 +97,20 @@ namespace Fiado.Controllers
             return View();
         }
 
-        public IActionResult Buscar()
+        [HttpGet]
+        public IActionResult Buscar(int Id)
         {
-            return View();
+            var modelo = new NotaBuscaViewModel() { ContaId = Id };
+            return View("Busca", modelo);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Buscar(NotaBuscaViewModel modelo)
+        {
+            var notas = notaRepositorio.Buscar(modelo);
+            var listaPaginada = await ListaPaginada<Nota>.CreateAsync(notas, 1, 10);
+            return View("Lista",listaPaginada);
+
         }
     }
 }
