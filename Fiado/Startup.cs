@@ -34,17 +34,16 @@ namespace Fiado
             //DB
             services.AddDbContextPool<FiadoContexto>(options =>
             {
-                if (env.IsDevelopment())
-                {
-                    options.UseSqlServer(configuration.GetConnectionString("SqlServerConnection"));
+                options.UseNpgsql(configuration.GetConnectionString("PostgresConnection"));
+                //if (env.IsDevelopment())
+                //{
+                //    options.UseSqlServer(configuration.GetConnectionString("SqlServerConnection"));
 
-                }
-                if (env.IsProduction())
-                {
-                    //
-
-                    options.UseNpgsql(configuration.GetConnectionString("PostgresConnection"));
-                }
+                //}
+                //if (env.IsProduction())
+                //{
+                //    options.UseNpgsql(configuration.GetConnectionString("PostgresConnection"));
+                //}
 
             });
 
@@ -62,12 +61,9 @@ namespace Fiado
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
 
-            app.UseHttpsRedirection();
+            app.UseDeveloperExceptionPage();
+
             app.UseStaticFiles();
 
             app.UseMvc(routes =>
