@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Fiado.Models.AtendenteModelos;
 using Fiado.Models.ClienteModelos;
 using Fiado.Models.ContaModelos;
 using Fiado.Models.NotaModelos;
@@ -34,16 +30,16 @@ namespace Fiado
             //DB
             services.AddDbContextPool<FiadoContexto>(options =>
             {
-                options.UseNpgsql(configuration.GetConnectionString("PostgresConnection"));
-                //if (env.IsDevelopment())
-                //{
-                //    options.UseSqlServer(configuration.GetConnectionString("SqlServerConnection"));
-
-                //}
-                //if (env.IsProduction())
-                //{
-                //    options.UseNpgsql(configuration.GetConnectionString("PostgresConnection"));
-                //}
+                if (env.IsDevelopment())
+                {
+                    options.UseSqlServer(configuration.GetConnectionString("SqlServerConnection"));
+                }
+                if (env.IsProduction())
+                {
+                    var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
+                    options.UseNpgsql(connectionString);
+                    //options.UseNpgsql(configuration.GetConnectionString("PostgresConnection"));
+                }
 
             });
 

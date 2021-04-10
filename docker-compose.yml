@@ -1,0 +1,43 @@
+﻿version: '3.4'
+
+services:        
+
+    app:
+        build:
+            dockerfile: ./Dockerfile
+            context: .
+        image: fiado
+        container_name: dockerapp
+        environment:
+            DB_CONNECTION_STRING: "host=postgres;port=5432;database=fiadodb;username=root;password=password"
+        ports:
+            - "8000"
+        networks: 
+            - production-network
+        depends_on:
+            - "postgres"
+
+    
+    postgres:
+         image: postgres:13.1
+         healthcheck:
+               test: [ "CMD", "pg_isready", "-q", "-d", "postgres", "-U", "root" ]
+               timeout: 45s
+               interval: 10s
+               retries: 10
+         
+         restart: always
+
+         environment:
+            - POSTGRES_USER=root
+            - POSTGRES_PASSWORD=password
+            - POSTGRES_DB=fiadodb
+
+         ports:
+            - 5432:5432        
+         networks: 
+            - production-network
+            
+networks: 
+    production-network:
+        driver: bridge
