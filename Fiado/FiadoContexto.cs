@@ -1,15 +1,8 @@
-﻿using Fiado.Models;
-using Fiado.Models.AtendenteModelos;
-using Fiado.Models.ClienteModelos;
+﻿using Fiado.Models.ClienteModelos;
 using Fiado.Models.ContaModelos;
 using Fiado.Models.NotaModelos;
 using Fiado.Models.PagamentoModelos;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Fiado
 {

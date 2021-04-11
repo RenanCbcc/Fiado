@@ -5,36 +5,38 @@ using Fiado.Models.NotaModelos;
 using Fiado.Models.PagamentoModelos;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace Fiado
 {
     public class Startup
     {
         private readonly IConfiguration configuration;
-        private readonly IHostingEnvironment env;
+        private readonly IWebHostEnvironment environment;
 
-        public Startup(IConfiguration configuration, IHostingEnvironment env)
+        public Startup(IConfiguration configuration, IWebHostEnvironment environment)
         {
             this.configuration = configuration;
-            this.env = env;
+            this.environment = environment;
+
         }
 
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
             //DB
             services.AddDbContextPool<FiadoContexto>(options =>
             {
-                if (env.IsDevelopment())
+                if (environment.IsDevelopment())
                 {
                     options.UseSqlServer(configuration.GetConnectionString("SqlServerConnection"));
                 }
-                if (env.IsProduction())
+                if (environment.IsProduction())
                 {
                     var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
                     options.UseNpgsql(connectionString);
@@ -43,7 +45,7 @@ namespace Fiado
 
             });
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddControllersWithViews();
 
             //Injecao de dependencias
             services.AddScoped<IClienteRepositorio, ClienteRepositorio>();
@@ -55,19 +57,24 @@ namespace Fiado
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app)
         {
+            if (this.environment.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
 
             app.UseDeveloperExceptionPage();
 
             app.UseStaticFiles();
-
-            app.UseMvc(routes =>
+            app.UseRouting();
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
+                endpoints.MapControllerRoute(
                     name: "default",
-                    template: "{controller=Cliente}/{action=Lista}/{id?}");
+                    pattern: "{controller=Conta}/{action=Lista}/{id?}");
             });
+
         }
     }
 }

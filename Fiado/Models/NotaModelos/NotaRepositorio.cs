@@ -74,7 +74,7 @@ namespace Fiado.Models.NotaModelos
                 query += "[Data] <= @p3 AND ";
             }
             query += "1 = 1";
-            return contexto.Notas.FromSql(query, modelo.Atendente, modelo.MenorQue, modelo.MaiorQue, modelo.Data);
+            return contexto.Notas.FromSqlRaw(query, modelo.Atendente, modelo.MenorQue, modelo.MaiorQue, modelo.Data);
 
 
         }

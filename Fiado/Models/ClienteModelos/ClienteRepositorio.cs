@@ -67,7 +67,7 @@ namespace Fiado.Models.ClienteModelos
             }
 
             query += "1 = 1";
-            return contexto.Clientes.FromSql(query, modelo.Nome, modelo.Endereco, modelo.Status);
+            return contexto.Clientes.FromSqlRaw(query, modelo.Nome, modelo.Endereco, modelo.Status);
         }
 
     }

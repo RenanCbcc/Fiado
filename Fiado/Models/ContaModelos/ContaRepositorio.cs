@@ -1,7 +1,6 @@
 ﻿using Fiado.Models.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -44,9 +43,9 @@ namespace Fiado.Models.ContaModelos
                 .Include(c => c.Cliente);
         }
 
-        public Task<Conta> GetConta(int Id)
+        public async Task<Conta> GetConta(int Id)
         {
-            return contexto.Contas.FindAsync(Id);
+            return await contexto.Contas.FindAsync(Id);
         }
 
         public IQueryable<Conta> Search(ContasBuscaViewModel modelo)

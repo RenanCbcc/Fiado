@@ -16,5 +16,6 @@ RUN dotnet publish "./Fiado/Fiado.csproj" -c Release -o out
 FROM  mcr.microsoft.com/dotnet/core/sdk:2.2 
 WORKDIR /app
 COPY --from=build-env /app/Fiado/out .
-EXPOSE 8000
-CMD ASPNETCORE_URLS=http://*:$PORT dotnet Fiado.dll
+EXPOSE 80
+#CMD ASPNETCORE_URLS=http://*:$PORT dotnet Fiado.dll
+ENTRYPOINT ["dotnet","Fiado.dll"]
